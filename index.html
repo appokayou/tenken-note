@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>点検野帳 サポート</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --blue: #0077d9;
+      --ink: #18202f;
+      --muted: #607086;
+      --line: #dbe4ef;
+      --panel: #ffffff;
+      --soft: #edf5ff;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(0, 119, 217, 0.13), transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+      line-height: 1.8;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 22px 72px;
+    }
+    .hero {
+      padding: 34px 0 26px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      background: rgba(0, 119, 217, 0.09);
+      border: 1px solid rgba(0, 119, 217, 0.14);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 42px;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 36px 0 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+    }
+    a {
+      color: var(--blue);
+    }
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+    .box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-top: 18px;
+      box-shadow: 0 18px 45px rgba(37, 62, 92, 0.08);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .feature {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .feature span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    ul {
+      padding-left: 1.3em;
+    }
+    .privacy-link {
+      background: var(--soft);
+      border: 1px solid #cfe5ff;
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    footer {
+      margin-top: 42px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 34px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="badge">iPad App Support</div>
+      <h1>点検野帳 サポート</h1>
+      <p class="lead">PDF図面、写真番号、撮影写真をひとつの野帳に整理。現場で記録し、あとから見返しやすい点検資料を作成できます。</p>
+    </section>
+
+    <div class="box">
+      <p>お問い合わせ、不具合報告、ご要望は下記メールアドレスまでご連絡ください。</p>
+      <p><a href="mailto:appokayou@gmail.com">appokayou@gmail.com</a></p>
+    </div>
+
+    <h2>主な機能</h2>
+    <div class="grid">
+      <div class="feature"><strong>PDF図面に直接記録</strong><span>文字、番号、矢印、ペンで現場メモを残せます。</span></div>
+      <div class="feature"><strong>写真番号を整理</strong><span>図面上の写真番号と撮影写真を関連付けます。</span></div>
+      <div class="feature"><strong>点検対象ごとに保存</strong><span>野帳データ、PDF、写真をまとめて管理できます。</span></div>
+      <div class="feature"><strong>PCでも確認</strong><span>保存したHTMLや書き込み入りPDFを確認できます。</span></div>
+    </div>
+
+    <h2>よくある質問</h2>
+    <p><strong>Q. データは外部サーバーに送信されますか？</strong><br>
+    A. いいえ。点検野帳は、ユーザーが取り込んだPDFや写真を端末内、またはユーザーが選択した保存先に保存します。</p>
+
+    <p><strong>Q. 対応端末は何ですか？</strong><br>
+    A. iPadに対応しています。</p>
+
+    <p><strong>Q. 写真やPDFが開けない場合はどうすればよいですか？</strong><br>
+    A. ファイルが端末にダウンロード済みか確認し、再度取り込みをお試しください。</p>
+
+    <h2>プライバシー</h2>
+    <p class="privacy-link">プライバシーポリシーは <a href="privacy.html">こちら</a> をご確認ください。</p>
+
+    <footer>
+      <p>© 2026 Youji Okamura</p>
+    </footer>
+  </main>
+</body>
+</html>
