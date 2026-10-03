@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>点検野帳｜橋梁・構造物点検をiPadで効率化</title>
   <meta name="description" content="点検野帳は、橋梁・道路・構造物点検の記録、図面、写真、コメントをiPadでまとめて管理できる点検支援アプリです。PDF図面への書き込み、写真番号管理、HTML出力で現場後の整理を効率化します。">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://appokayou.github.io/tenken-note/">
   <link rel="icon" href="app-icon.png">
   <meta property="og:type" content="website">
@@ -77,6 +78,42 @@
     }
     .button.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
     .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+    .update-panel {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 28px;
+      align-items: center;
+      background: linear-gradient(135deg, #eef6ff, #ffffff);
+      border: 1px solid #bfd8f7;
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 12px 32px rgba(23, 83, 150, 0.09);
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #fff4d6;
+      color: #805b08;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .update-panel h2 { margin: 12px 0 8px; }
+    .update-list { margin: 16px 0 20px; padding-left: 1.4em; color: #3e4a5f; }
+    .update-list li + li { margin-top: 5px; }
+    .qr-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 8px 22px rgba(23, 32, 51, 0.08);
+    }
+    .qr-card img { display: block; width: 100%; height: auto; }
+    .qr-card strong { display: block; margin-top: 8px; }
+    .qr-card span { display: block; color: var(--muted); font-size: 12px; }
     .device {
       border: 1px solid var(--line);
       border-radius: 22px;
@@ -116,6 +153,7 @@
     .row strong { display: block; }
     .row span { color: var(--muted); font-weight: 700; font-size: 13px; }
     section { padding: 34px 0; }
+    section[id] { scroll-margin-top: 90px; }
     .section-title { font-size: clamp(26px, 3vw, 34px); line-height: 1.25; margin: 0 0 12px; letter-spacing: 0; }
     .section-lead { color: var(--muted); max-width: 800px; margin: 0 0 24px; }
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -125,7 +163,10 @@
     .card p { color: var(--muted); margin: 0; }
     .scene-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0; margin: 0; list-style: none; }
     .scene-list li { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-weight: 800; }
-    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .related-app { display: grid; grid-template-columns: 1fr 190px; gap: 24px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 26px; box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06); }
+    .related-label { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: #eef6ff; color: var(--blue-deep); font-size: 13px; font-weight: 900; }
+    .related-app h2 { margin: 10px 0 6px; }
+    .related-app p { color: var(--muted); margin: 0; }
     .faq { display: grid; gap: 12px; }
     details { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
     summary { cursor: pointer; font-weight: 800; }
@@ -134,19 +175,26 @@
     .cta p { color: #cbd5e1; margin: 6px 0 0; }
     footer { color: var(--muted); padding: 36px 0 48px; font-size: 13px; }
     @media (max-width: 860px) {
-      .hero-grid, .cards, .screen-body, .compare, .cta, .scene-list { grid-template-columns: 1fr; }
+      .hero-grid, .update-panel, .cards, .screen-body, .related-app, .cta, .scene-list { grid-template-columns: 1fr; }
       .nav { align-items: flex-start; }
       .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
       .hero { padding-top: 40px; }
       .device { padding: 12px; min-height: auto; }
       .screen-body { min-height: 0; }
       .list { border-left: 0; border-top: 1px solid var(--line); }
+      .qr-card { width: min(220px, 100%); }
     }
   </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "点検野帳",
+        "alternateName": "点検野帳 サポート",
+        "url": "https://appokayou.github.io/tenken-note/"
+      },
       {
         "@type": "MobileApplication",
         "name": "点検野帳",
@@ -156,14 +204,14 @@
         "url": "https://appokayou.github.io/tenken-note/",
         "image": "https://appokayou.github.io/tenken-note/app-icon.png",
         "downloadUrl": "https://apps.apple.com/jp/app/id6782474651",
+        "sameAs": "https://apps.apple.com/jp/app/id6782474651",
         "author": { "@type": "Person", "name": "youji okamura" }
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "橋梁点検でiPadは使えますか", "acceptedAnswer": { "@type": "Answer", "text": "点検野帳はiPadでPDF図面や点検写真を扱う現場記録アプリです。橋梁点検、道路構造物点検、施設点検など図面と写真を使う業務で利用できます。" } },
-          { "@type": "Question", "name": "点検写真を現場で整理できますか", "acceptedAnswer": { "@type": "Answer", "text": "写真番号と撮影写真を関連付けて管理できます。図面上の番号から写真を確認しやすく、帰社後の写真整理や報告資料作成の前段取りに役立ちます。" } },
-          { "@type": "Question", "name": "点検野帳と点検野帳カメラの違いは何ですか", "acceptedAnswer": { "@type": "Answer", "text": "点検野帳はPDF図面、書き込み、写真、コメントをまとめて管理する記録アプリです。点検野帳カメラは現場写真の撮影、写真番号、コメント整理に重点を置いたアプリです。" } }
+          { "@type": "Question", "name": "点検写真を現場で整理できますか", "acceptedAnswer": { "@type": "Answer", "text": "写真番号と撮影写真を関連付けて管理できます。図面上の番号から写真を確認しやすく、帰社後の写真整理や報告資料作成の前段取りに役立ちます。" } }
         ]
       }
     ]
@@ -178,6 +226,7 @@
         <span>点検野帳</span>
       </a>
       <nav class="nav-links" aria-label="ページ内メニュー">
+        <a href="#update">更新情報</a>
         <a href="#features">できること</a>
         <a href="#scenes">利用シーン</a>
         <a href="#faq">FAQ</a>
@@ -229,6 +278,33 @@
       </div>
     </section>
 
+    <section id="update" aria-labelledby="update-title">
+      <div class="wrap">
+        <div class="update-panel">
+          <div>
+            <span class="status-badge">2026年10月3日・App Store審査中</span>
+            <h2 class="section-title" id="update-title">バージョン1.3を公開予定です</h2>
+            <p class="section-lead">PDF図面の見やすさと、現場での書き込み操作を中心に改善しました。現在保存されている点検データは、バージョンアップ後も引き続き利用できます。</p>
+            <ul class="update-list">
+              <li>PDFの拡大表示と、書き込み入りPDFの保存画質を改善</li>
+              <li>半透明マーカー、色選択、極細ペンを追加</li>
+              <li>描画中のピンチ拡大・縮小と2本指での表示移動に対応</li>
+              <li>番号、番号矢印、矢印、手書き文字とページ送りの操作性を改善</li>
+            </ul>
+            <div class="actions">
+              <a class="button primary" href="https://apps.apple.com/jp/app/id6782474651" target="_blank" rel="noopener">App Storeを開く</a>
+            </div>
+            <p class="note">バージョン1.3はAppleの審査承認後に公開します。QRコードは公開後も同じApp Storeページを開きます。</p>
+          </div>
+          <a class="qr-card" href="https://apps.apple.com/jp/app/id6782474651" target="_blank" rel="noopener" aria-label="App Storeで点検野帳を開く">
+            <img src="app-store-qr.png" alt="点検野帳のApp Storeページを開くQRコード" width="720" height="720">
+            <strong>App Store用QRコード</strong>
+            <span>iPadのカメラで読み取れます</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="features">
       <div class="wrap">
         <h2 class="section-title">このアプリでできること</h2>
@@ -265,10 +341,24 @@
       </div>
     </section>
 
-    <section>
-      <div class="wrap compare">
-        <article class="card"><h2 class="section-title">点検野帳</h2><p>点検記録、PDF図面、写真、コメントをまとめて管理するアプリです。図面への書き込みやHTML/PDF出力まで含めて、点検結果を一元管理したい場合に向いています。</p></article>
-        <article class="card"><h2 class="section-title">点検野帳カメラ</h2><p>現場写真の撮影と整理に特化したアプリです。写真番号、径間、メモ、音声メモをまとめて扱いたい場合は、<a href="https://appokayou.github.io/tenken-note-camera/">点検野帳カメラ</a>も確認してください。</p></article>
+    <section aria-labelledby="related-app-title">
+      <div class="wrap">
+        <div class="related-app">
+          <div>
+            <span class="related-label">関連する別アプリ</span>
+            <h2 class="section-title" id="related-app-title">点検野帳カメラ</h2>
+            <p>「点検野帳」とは別の、現場写真の撮影・整理に特化したアプリです。写真番号、径間、メモ、音声メモをまとめて扱いたい方におすすめします。</p>
+            <div class="actions" style="margin-top:18px;">
+              <a class="button primary" href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener">カメラ版をApp Storeで見る</a>
+              <a class="button" href="https://appokayou.github.io/tenken-note-camera/">専用サイトを見る</a>
+            </div>
+          </div>
+          <a class="qr-card" href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener" aria-label="App Storeで点検野帳カメラを開く">
+            <img src="camera-app-store-qr.png" alt="点検野帳カメラのApp Storeページを開くQRコード" width="370" height="370">
+            <strong>カメラ版QRコード</strong>
+            <span>別アプリのApp Storeページです</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -279,7 +369,6 @@
           <details><summary>橋梁点検でiPadは使えますか</summary><p>点検野帳はiPadでPDF図面や点検写真を扱う現場記録アプリです。橋梁点検、道路構造物点検、施設点検、建物点検、現地調査など、図面と写真を使って記録を残す業務で活用できます。</p></details>
           <details><summary>点検写真を現場で整理できますか</summary><p>写真番号と撮影写真を関連付けて管理できます。図面上の番号から写真を確認しやすくなるため、点検後の写真整理や報告資料作成の前段取りに役立ちます。</p></details>
           <details><summary>写真番号を管理できますか</summary><p>写真番号と写真の管理に対応しています。iPadカメラ、写真ライブラリからの追加に加えて、デジカメ撮影分の写真番号登録にも対応します。</p></details>
-          <details><summary>点検野帳と点検野帳カメラの違いは何ですか</summary><p>点検野帳はPDF図面、書き込み、写真、コメントをまとめて管理する記録アプリです。点検野帳カメラは現場写真の撮影、写真番号、コメント整理に重点を置いたアプリです。</p></details>
           <details><summary>どのような現場で使えますか</summary><p>橋梁定期点検、道路構造物点検、コンクリート構造物の変状記録、設備点検、施設点検、建物点検、現地調査など、図面と写真を使う点検業務を想定しています。</p></details>
         </div>
       </div>
@@ -300,7 +389,8 @@
 
   <footer>
     <div class="wrap">
-      <div><a href="privacy.html">プライバシーポリシー</a> / <a href="https://appokayou.github.io/tenken-note-camera/">点検野帳カメラ</a> / <a href="mailto:appokayou@gmail.com">お問い合わせ</a></div>
+      <div><a href="privacy.html">プライバシーポリシー</a> / <a href="mailto:appokayou@gmail.com">お問い合わせ</a></div>
+      <div>関連する別アプリ: <a href="https://appokayou.github.io/tenken-note-camera/">点検野帳カメラ</a></div>
       <div>公開URL: <a href="https://appokayou.github.io/tenken-note/">https://appokayou.github.io/tenken-note/</a></div>
       <div>&copy; 2026 Youji Okamura</div>
     </div>

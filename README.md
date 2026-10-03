@@ -7,7 +7,7 @@ GitHub Pagesで公開する、iPad向け点検支援アプリ「点検野帳」�
 - サポートページ: https://appokayou.github.io/tenken-note/
 - プライバシーポリシー: https://appokayou.github.io/tenken-note/privacy.html
 - App Store: https://apps.apple.com/jp/app/id6782474651
-- 関連アプリ「点検野帳カメラ」: https://appokayou.github.io/tenken-note-camera/
+- 関連する別アプリ「点検野帳カメラ」: https://appokayou.github.io/tenken-note-camera/
 - お問い合わせ: appokayou@gmail.com
 
 ## SEO対応内容
@@ -20,7 +20,7 @@ GitHub Pagesで公開する、iPad向け点検支援アプリ「点検野帳」�
 - canonical、Open Graph、Twitter Card、favicon、画像altを追加
 - MobileApplicationとFAQPageのJSON-LD構造化データを追加
 - robots.txtとsitemap.xmlを追加
-- 点検野帳カメラとの相互リンクを追加
+- 「点検野帳カメラ」は関連する別アプリと明記し、専用の紹介欄とApp Store用QRコードから案内
 
 ## 公開後に行う作業
 
@@ -36,4 +36,3 @@ GitHub Pagesで公開する、iPad向け点検支援アプリ「点検野帳」�
 - `robots.txt`: クローラー向け設定
 - `sitemap.xml`: 公開ページ一覧
 - `app-icon.png`: favicon、OG画像
-
